@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-
+import { toast } from 'react-toastify';
 import { createClient } from '@/utils/supabase/server'
 
 export async function login(formData: FormData) {
@@ -22,7 +22,7 @@ export async function login(formData: FormData) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/')
+  redirect('/characters')
 }
 
 export async function signup(formData: FormData) {
@@ -34,13 +34,15 @@ export async function signup(formData: FormData) {
     email: formData.get('email') as string,
     password: formData.get('password') as string,
   }
+  console.log(`email: ${data.email} password: ${data.password}`)
 
   const { error } = await supabase.auth.signUp(data)
+  console.log(`error: ${error}`)
 
   if (error) {
     redirect('/error')
   }
 
   revalidatePath('/', 'layout')
-  redirect('/')
+  redirect('/characters')
 }
