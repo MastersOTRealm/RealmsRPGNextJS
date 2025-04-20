@@ -44,6 +44,7 @@ export default function Navbar({ user }: { user: User | null }) {
                         {!user &&
                           <a href="/login">Login</a>
                         }
+                        <Image src="/userIcon.png" alt="userIcon" width={12} height={12} className="ml-2"/>
                           {/* <a href="/register" className="">Register</a> */}
                       </div>
                     </div>
