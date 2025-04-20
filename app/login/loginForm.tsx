@@ -12,6 +12,7 @@ export default function LoginForm() {
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
+        console.log("logging in")
 
         try {
             const action = mode === 'login' ? login : signup

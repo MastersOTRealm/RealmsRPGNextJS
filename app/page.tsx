@@ -1,10 +1,15 @@
 import Image from "next/image";
 import Navbar from "./(components)/Navbar";
+import { createClient } from "@/utils/supabase/server";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = createClient()
+  const { data: { user } } = await (await supabase).auth.getUser();
+
   return (
     <>
     <header id="header"></header>
+    <Navbar user={user}/>
     <main className="">
     <div className="w-full h-[400px] flex bg-[url('/vista.png')] bg-cover bg-center justify-center drop-shadow-2xl">
       <div className="w-full flex justify-center items-center">

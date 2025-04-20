@@ -1,6 +1,25 @@
+'use client'
+import { createClient } from "@/utils/supabase/client";
 import Image from "next/image";
+import { toast } from "react-toastify";
+import { Database, Tables, Enums } from "@/database.types";
+import { User } from "@supabase/supabase-js";
+import { useRouter } from "next/navigation";
 
-export default function Navbar() {
+export default function Navbar({ user }: { user: User | null }) {
+    const supabase = createClient();
+    const router = useRouter()
+
+    async function handleLogout() {
+        const {error} = await supabase.auth.signOut();
+        if (error) {
+            toast.error("Error logging out: " + error)
+        }
+        else {
+          toast.success("logged out!")
+        }
+        router.push("/login")
+    }
 
     return (
         <>
@@ -19,7 +38,12 @@ export default function Navbar() {
                         <a href="/register" className="mr-10">Campaigns</a>
                       </div>
                       <div className="h-full mr-10 ml-10 flex justify-self-end justify-end items-center">
+                        {user && 
+                          <button onClick={() => {handleLogout()}} className="rounded-md p-2 hover:bg-blue-300">Logout</button>
+                        }
+                        {!user &&
                           <a href="/login">Login</a>
+                        }
                           {/* <a href="/register" className="">Register</a> */}
                       </div>
                     </div>
