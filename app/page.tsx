@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Navbar from "./(components)/Navbar";
-import { createClient, getReviews } from "@/utils/supabase/server";
-import { useState } from "react";
-import Carousel from "./(components)/Carousel";
-import { Database } from "@/database.types";
+import { createClient } from "@/utils/supabase/server";
+// import { useState } from "react";
+// import Carousel from "./(components)/Carousel";
+// import { Database } from "@/database.types";
 
 export default async function Home() {
   const supabase = createClient()
