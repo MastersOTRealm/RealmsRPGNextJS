@@ -1,10 +1,15 @@
 import Image from "next/image";
 import Navbar from "./(components)/Navbar";
-import { createClient } from "@/utils/supabase/server";
+import { createClient, getReviews } from "@/utils/supabase/server";
+import { useState } from "react";
+import Carousel from "./(components)/Carousel";
+import { Database } from "@/database.types";
 
 export default async function Home() {
   const supabase = createClient()
   const { data: { user } } = await (await supabase).auth.getUser();
+
+  // const reviews: Array<Database['public']['Tables']['review']> = await getReviews()
 
   return (
     <>
@@ -40,6 +45,9 @@ export default async function Home() {
           </div>
         </div>
       </div>
+    </section>
+    <section className="">
+      {/* <Carousel reviews={reviews}/> */}
     </section>
 
     

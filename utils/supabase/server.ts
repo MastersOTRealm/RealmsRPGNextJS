@@ -27,3 +27,17 @@ export async function createClient() {
     }
   )
 }
+
+export async function getReviews() {
+  const supabase = createClient()
+  try {
+    const reviews = await (await supabase)
+      .from('reviews')
+      .select()
+    console.dir(reviews)
+  } catch(err) {
+    console.error(err)
+  }
+  // return reviews
+
+}

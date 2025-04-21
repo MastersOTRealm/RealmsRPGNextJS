@@ -2,7 +2,6 @@
 import { createClient } from "@/utils/supabase/client";
 import Image from "next/image";
 import { toast } from "react-toastify";
-import { Database, Tables, Enums } from "@/database.types";
 import { User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 
